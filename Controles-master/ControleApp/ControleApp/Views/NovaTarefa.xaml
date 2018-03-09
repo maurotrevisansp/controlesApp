@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControleApp.Views.NovaTarefa"
+             Title="TAREFAS">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="LISTA   " Activated="Lista_clicked"></ToolbarItem>
+        <ToolbarItem Text="INICIO  " Activated="Menu_clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ScrollView x:Name="Scroll">
+    <StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="5,10,10,0">
+                <Label Margin="5,5,0,5" Text="Para:"></Label>
+                <Grid HorizontalOptions="StartAndExpand" Margin="0,5,5,5">
+                    <Picker x:Name="PckPara" IsVisible="False"
+                                SelectedIndexChanged="PickerList_OnSelectedIndexChanged">
+                    </Picker>
+                    <Label x:Name="PickerLabel" Text="Selecione um Colaborador"
+                       FontSize="16" FontAttributes="Bold" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PickerLabel_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Button Text="Eu" Clicked="Eu_Clicked" BackgroundColor="LightGray" BorderColor="DarkGray" BorderWidth="1" HorizontalOptions="End" FontSize="Micro" WidthRequest="50" HeightRequest="15"></Button>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="5,0,10,0">
+                <Label Margin="5,5,0,5" Text="Tipo:"></Label>
+
+                <Grid HorizontalOptions="StartAndExpand" Margin="0,5,5,5">
+                    <Picker x:Name="PckTipo" IsVisible="False"
+                                SelectedIndexChanged="PickerListTipo_OnSelectedIndexChanged">
+                    </Picker>
+
+                    <Label x:Name="PickerLabelTipo" Text="Selecione um Tipo"
+                       FontSize="16" FontAttributes="Bold" HorizontalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PickerLabelTipo_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <Button  x:Name="BtnApagar" BackgroundColor="White" BorderColor="DarkGray" BorderWidth="1" TextColor="Black" HorizontalOptions="EndAndExpand" Text="Limpar" Clicked="BtnApagar_OnClicked" FontSize="Micro" WidthRequest="70" HeightRequest="35"></Button>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand"  Margin="10,0,10,0">
+                <StackLayout BackgroundColor="DarkGray" Padding="1">
+                    <Editor FontSize="Small" HeightRequest="180" MinimumHeightRequest="80"  HorizontalOptions="FillAndExpand"  Text="Descrição" x:Name="TxtTexto" Focused="textTap" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                    </Editor>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Margin="5,0,10,0">
+                <Label Margin="5,5,0,5" Text="Cliente:"></Label>
+
+                <Grid HorizontalOptions="StartAndExpand" Margin="0,5,5,5">
+                    <Picker x:Name="PckCliente" IsVisible="False"
+                                SelectedIndexChanged="PickerListCliente_OnSelectedIndexChanged">
+                    </Picker>
+
+                    <Label x:Name="PickerLabelCliente" Text="Selecione um Cliente"
+                       FontSize="16" FontAttributes="Bold" HorizontalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="PickerLabelCliente_OnTapped"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </StackLayout>
+
+            <StackLayout Margin="0,10,0,0">
+            
+            <StackLayout Orientation="Horizontal" Margin="5,0,5,0" HorizontalOptions="Center">
+                <Label Text="Fazer Em" VerticalOptions="Center" ></Label>
+                <Frame Padding="0,-5,0,-5"><DatePicker x:Name="TxtDataFim" HorizontalOptions="FillAndExpand" Margin="0"></DatePicker></Frame>
+                <Frame Padding="0,-5,0,-5" WidthRequest="75">
+                        <Entry x:Name="TxtHoraFim" HorizontalOptions="FillAndExpand" ></Entry>
+                </Frame>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,20,20,5" >
+
+
+                    <Grid HorizontalOptions="StartAndExpand" Margin="5,5,5,5">
+                        <Picker x:Name="PckAcao" IsVisible="False"
+                                SelectedIndexChanged="PickerListAcao_OnSelectedIndexChanged">
+                        </Picker>
+
+                        <Label x:Name="PickerLabelAcao" Text="Incluir     "
+                       FontSize="16" FontAttributes="Bold" HorizontalOptions="StartAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PickerLabelAcao_OnTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Grid>
+                    <Button  BackgroundColor="DarkGreen" TextColor="White" HorizontalOptions="EndAndExpand" Text="Enviar" Clicked="Enviar" FontSize="Micro" WidthRequest="70" HeightRequest="15"></Button>
+            </StackLayout>
+                <StackLayout IsVisible="False" HorizontalOptions="FillAndExpand" x:Name="StckSucesso" BackgroundColor="#a5d6a7">
+                <Label HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="TxtSucesso" Text=""></Label>
+            </StackLayout>
+            
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="False">
+                    <Button x:Name="BtnCopiar" BackgroundColor="Transparent" Text="Me Copiar" Image="box.png"></Button>
+                    <Button x:Name="BtnSms" BackgroundColor="Transparent" Text="Enviar Sms" Image="box.png"></Button>
+                </StackLayout>
+
+            <!--<StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,15,0,0">
+                <Label Text="Avisos" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,8,0,0">
+                <Label Text="Anotações" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,8,0,0">
+                <Label Text="Arquivos" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
+            </StackLayout>-->
+                
+                
+        </StackLayout>
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

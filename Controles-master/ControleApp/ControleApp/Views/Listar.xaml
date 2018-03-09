@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:controleApp="clr-namespace:ControleApp;assembly=ControleApp"
+             x:Class="ControleApp.Views.Listar">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="INICIO  " Activated="Menu_clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,15,0,0" Spacing="0">
+                <Grid BackgroundColor="Black" Padding="1,1,1,1" RowSpacing="1" ColumnSpacing="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="27"></RowDefinition>
+                        <RowDefinition Height="27"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FiltrarMinhas" />
+                        </StackLayout.GestureRecognizers>
+                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Tarefas Minhas" ></Label>
+                    </StackLayout>
+                    <Label Grid.Row="0" Margin="0" Grid.Column="1" VerticalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Red" FontAttributes="Bold" x:Name="TxtMinhas"></Label>
+                    <StackLayout Grid.Row="1" Grid.Column="0" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="FiltrarDelegadas" />
+                        </StackLayout.GestureRecognizers>
+                        <Label VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Text="Tarefas Delegadas"></Label>
+                    </StackLayout>
+                    <Label Grid.Row="1" Margin="0" Grid.Column="1" HorizontalOptions="Fill" VerticalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" BackgroundColor="White" TextColor="Red" FontAttributes="Bold" x:Name="TxtDelegadas"></Label>
+                </Grid>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,20,0,20">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="MostrarFiltro"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+                <Label Text="Mais Filtros +"></Label>
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="Filtros" IsVisible="False">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                    <Label Text="Tipo " />
+                    <Frame Padding="0,-3,0,-3">
+                        <Picker x:Name="PckTIpo" Title="Tipo"></Picker>
+                    </Frame>
+                    <Frame Padding="0,-3,0,-3">
+                        <Picker x:Name="PckComo" Title="Tipo"></Picker>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+                    <Label Text="De" />
+                    <Frame Padding="0,-3,0,-3">
+                        <controleApp:NullDate x:Name="PckDe"></controleApp:NullDate>
+                    </Frame>
+                    <Label Text="a" />
+                    <Frame Padding="0,-3,0,-3">
+                        <controleApp:NullDate x:Name="PckA" ></controleApp:NullDate>
+                    </Frame>
+                </StackLayout>
+                <Button Text="Filtrar" HorizontalOptions="Center" Clicked="Filtrar_clicked"></Button>
+            </StackLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" x:Name="Scroll" VerticalOptions="FillAndExpand" IsVisible="False">
+                <StackLayout x:Name="StackList" Spacing="0"></StackLayout>
+            </ScrollView>
+            
+            <!--<ListView x:Name="Lista" RowHeight="80" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapItem"></TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <StackLayout VerticalOptions="FillAndExpand" WidthRequest="95" Margin="1,1,0,1" BackgroundColor="White">
+                                    <Label Text="{Binding Data}" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"></Label>
+                                </StackLayout>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="1,1,1,1" BackgroundColor="White">
+                                    <ScrollView >
+                                        <Label Text="{Binding Descrição}" LineBreakMode="WordWrap" Margin="7,0,0,0" ></Label>
+                                    </ScrollView>
+                                </StackLayout>
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            
+            <xForms:SfDataGrid QueryRowHeight="DataGrid_QueryRowHeight" HeaderRowHeight="25"  x:Name="Lista" HorizontalOptions="FillAndExpand" AutoGenerateColumns="False" ColumnSizer="LastColumnFill" AutoGenerateColumnsMode="ResetAll" GridTapped="Lista_OnGridTapped">
+                
+                    
+                <xForms:SfDataGrid.Columns >
+                    <xForms:GridTextColumn  Width="110" MinimumWidth="100" HeaderText="Data" 
+                                   MappingName="DATA_PROGR" Format="dd/MM/yyyy" />
+                    <xForms:GridTextColumn HeaderText="Descrição"
+                                   MappingName="HISTORICO" />
+                </xForms:SfDataGrid.Columns>
+            </xForms:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
