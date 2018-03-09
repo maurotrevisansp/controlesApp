@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ControleApp.Views.Login"
+             Title="Login">
+    <ContentPage.Content>
+        <StackLayout Margin="10">
+            <Label Text="Controles OnLine Login" HorizontalTextAlignment="Center" FontSize="Large" TextColor="DarkViolet"/>
+            <Frame Padding="0">
+                <Entry x:Name="usernameEntry" Placeholder="Usuário" />
+            </Frame>
+            <Frame Padding="0">
+                <Entry x:Name="passwordEntry" IsPassword="true" Placeholder="Senha"/>
+            </Frame>
+            
+            <Button Text="Login" Clicked="OnLoginButtonClickedAsync" BackgroundColor="Orange" TextColor="White"/>
+            <Label x:Name="messageLabel" />
+            <ActivityIndicator HorizontalOptions="Center" IsVisible="False" x:Name="Act" IsRunning="True"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+
+             x:Class="ControleApp.Views.Menu"
+             Title="Menu"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="logout.png" Activated="Sair_clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        
+            <!--<StackLayout>
+            <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="97"></RowDefinition>
+                    <RowDefinition Height="97"></RowDefinition>
+                    <RowDefinition Height="97"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="TapNaoLidas"/>
+                    </Grid.GestureRecognizers>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Image WidthRequest="32" HeightRequest="32" Source="supesq.png" Grid.Row="0" />
+                    <Image WidthRequest="32" HeightRequest="32" Source="boletins2.jpg" Grid.Row="0" HorizontalOptions="Center" Aspect="AspectFit"/>
+                    --><!--<Button BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" Clicked="Boletins_Clicked"/>--><!--
+                </Grid>
+            </Grid>
+        </StackLayout>-->
+
+        <StackLayout BackgroundColor="White">
+
+            <StackLayout Margin="5,70,30,30" BackgroundColor="White">
+
+                <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="97"></RowDefinition>
+                        <RowDefinition Height="97"></RowDefinition>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdNaoLidas" Grid.Column="0" Grid.Row="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="TapNaoLidas"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdAtraso" Grid.Column="1" Grid.Row="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="TapAtrasos"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdFazerHoje" Grid.Column="2" Grid.Row="0">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="FazerHoje_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdValidar" Grid.Column="0" Grid.Row="1">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="TapValidar"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdAnotacoes" Grid.Column="1" Grid.Row="1">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="AnotacaoTap"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdFuturo" Grid.Column="2" Grid.Row="1">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="FuturoTap"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="{Binding Image}"></Image>
+                        <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal" Margin="5,50,20,20" WidthRequest="240" HorizontalOptions="CenterAndExpand" >
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdNovaTarefa">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            Tapped="TapNovaTarefa"/>
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="Icone_NovaTarefa.png"></Image>
+                        <Label Text="Nova Tarefa" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="FillAndExpand" x:Name="GrdAnexar" >
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                            />
+                        </StackLayout.GestureRecognizers>
+                        <Image WidthRequest="42" HeightRequest="42" Source="icone_arquivos_marron.png"></Image>
+                        <Label Text="Enviar Arquivos" HorizontalTextAlignment="Center" LineBreakMode="WordWrap"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+
+        </StackLayout>
+        
+            
+        
+                
+
+
+                <!--<xForms:SfListView x:Name="ItemsListView2" ItemTapped="ItemsListView2_OnItemTapped" SelectionChanged="ItemsListView_SelectionChanged" HorizontalOptions="CenterAndExpand" Margin="20,15,20,0">
+                    <xForms:SfListView.LayoutManager>
+                        <xForms:GridLayout SpanCount="2"   />
+
+                    </xForms:SfListView.LayoutManager>
+                    <xForms:SfListView.ItemSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <OnPlatform.Android>
+                                <OnIdiom x:TypeArguments="x:Double" Phone="100" Tablet="120" />
+                            </OnPlatform.Android>
+                            <OnPlatform.iOS>
+                                <OnIdiom x:TypeArguments="x:Double" Phone="100" Tablet="120" />
+                            </OnPlatform.iOS>
+                        </OnPlatform>
+                    </xForms:SfListView.ItemSize>
+                    <xForms:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center" Padding="2" >
+                                    <Image WidthRequest="32" HeightRequest="32" Source="{Binding Image}" Grid.Row="1"
+                       HeightRequest="30" WidthRequest="30"/>
+                                    <Label Text="{Binding Nome}" HorizontalTextAlignment="Center" 
+                       HorizontalOptions="Center"
+                       LineBreakMode="WordWrap"
+                       
+                       FontSize="14"/>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </xForms:SfListView.ItemTemplate>
+                </xForms:SfListView>-->
+                <!--
+      <ListView x:Name="ItemsListView"
+				ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+				ItemSelected="OnItemSelected">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+                
+               <StackLayout Grid.Row="2" Orientation="Vertical" Padding="10" >
+                <Image WidthRequest="32" HeightRequest="32" Source="{Binding pathImage}" Grid.Row="1"
+                       HeightRequest="30" WidthRequest="30"/>
+                <Label Text="{Binding Text}" 
+                       HorizontalOptions="Center"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="14"/>
+              </StackLayout>
+              
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>-->
+            
+        
+        
+    </ContentPage.Content>
+</ContentPage>
