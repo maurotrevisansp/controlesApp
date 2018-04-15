@@ -19,7 +19,7 @@ namespace ControleApp.Model
         public DateTime Pgr_DataLida { get; set; }
         public int Pgr_LidaPor { get; set; }
 
-
+        public virtual List<TarefasAnot> tarefasAnot { get; set; }
 
         public int TotTarProp { get; set; }
         public int TotTarDeleg { get; set; }

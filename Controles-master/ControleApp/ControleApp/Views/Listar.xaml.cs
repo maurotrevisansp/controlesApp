@@ -20,6 +20,7 @@ namespace ControleApp.Views
         private List<Tarefas> tarefas = new List<Tarefas>();
         private List<Tarefas> minhas = new List<Tarefas>();
         private List<Tarefas> delegadas = new List<Tarefas>();
+
         public Listar (string titulo,string tipo)
 		{
 		    try
@@ -136,9 +137,6 @@ namespace ControleApp.Views
 	            {
 	                var itemm = new ListaVM() {Data = l.DATA_PROGR.ToString("dd/MM/yyyy"), Descrição = l.HISTORICO, Fase = l.Pgr_Fase.ToString() };
                     listavm.Add(itemm);
-                    
-	                
-	                
 	            }
                 Lista.ItemsSource = listavm;
 	            //Lista.Columns[0].Width = 150;

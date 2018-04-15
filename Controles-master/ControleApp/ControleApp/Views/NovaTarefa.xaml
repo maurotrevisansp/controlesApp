@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xForms="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             xmlns:controleApp="clr-namespace:ControleApp;assembly=ControleApp"
              x:Class="ControleApp.Views.NovaTarefa"
              Title="TAREFAS">
 
@@ -8,10 +10,10 @@
         <ToolbarItem Text="LISTA   " Activated="Lista_clicked"></ToolbarItem>
         <ToolbarItem Text="INICIO  " Activated="Menu_clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
 
-
-    <ScrollView x:Name="Scroll">
-    <StackLayout>
+        <StackLayout Spacing="0">
             <StackLayout Orientation="Horizontal" Margin="5,10,10,0">
                 <Label Margin="5,5,0,5" Text="Para:"></Label>
                 <Grid HorizontalOptions="StartAndExpand" Margin="0,5,5,5">
@@ -44,10 +46,9 @@
                 </Grid>
                 <Button  x:Name="BtnApagar" BackgroundColor="White" BorderColor="DarkGray" BorderWidth="1" TextColor="Black" HorizontalOptions="EndAndExpand" Text="Limpar" Clicked="BtnApagar_OnClicked" FontSize="Micro" WidthRequest="70" HeightRequest="35"></Button>
             </StackLayout>
-
             <StackLayout BackgroundColor="White" HorizontalOptions="FillAndExpand"  Margin="10,0,10,0">
                 <StackLayout BackgroundColor="DarkGray" Padding="1">
-                    <Editor FontSize="Small" HeightRequest="180" MinimumHeightRequest="80"  HorizontalOptions="FillAndExpand"  Text="Descrição" x:Name="TxtTexto" Focused="textTap" VerticalOptions="FillAndExpand" BackgroundColor="White">
+                    <Editor FontSize="Small" HeightRequest="180" MinimumHeightRequest="80"  HorizontalOptions="FillAndExpand"  Text="Descrição" x:Name="TxtTexto" Focused="textTap" VerticalOptions="FillAndExpand"  BackgroundColor="White">
                     </Editor>
                 </StackLayout>
             </StackLayout>
@@ -70,18 +71,20 @@
             </StackLayout>
 
             <StackLayout Margin="0,10,0,0">
-            
-            <StackLayout Orientation="Horizontal" Margin="5,0,5,0" HorizontalOptions="Center">
-                <Label Text="Fazer Em" VerticalOptions="Center" ></Label>
-                <Frame Padding="0,-5,0,-5"><DatePicker x:Name="TxtDataFim" HorizontalOptions="FillAndExpand" Margin="0"></DatePicker></Frame>
-                <Frame Padding="0,-5,0,-5" WidthRequest="75">
+
+                <StackLayout Orientation="Horizontal" Margin="5,0,5,0" HorizontalOptions="Center">
+                    <Label Text="Fazer Em" VerticalOptions="Center" ></Label>
+                    <Frame Padding="0,-5,0,-5">
+                        <DatePicker x:Name="TxtDataFim" HorizontalOptions="FillAndExpand" Margin="0"></DatePicker>
+                    </Frame>
+                    <Frame Padding="0,-5,0,-5" WidthRequest="75">
                         <Entry x:Name="TxtHoraFim" HorizontalOptions="FillAndExpand" ></Entry>
-                </Frame>
-            </StackLayout>
-            
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,20,20,5" >
+                    </Frame>
+                </StackLayout>
 
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="20,20,20,5" >
 
+                    <Button  x:Name="BtnAnotar" BackgroundColor="White" BorderColor="DarkGray" BorderWidth="1" TextColor="Black" HorizontalOptions="CenterAndExpand" Text="Anotar" Clicked="BtnAnotar_OnClicked" FontSize="Micro" WidthRequest="70" HeightRequest="35"></Button>
                     <Grid HorizontalOptions="StartAndExpand" Margin="5,5,5,5">
                         <Picker x:Name="PckAcao" IsVisible="False"
                                 SelectedIndexChanged="PickerListAcao_OnSelectedIndexChanged">
@@ -95,33 +98,33 @@
                         </Label>
                     </Grid>
                     <Button  BackgroundColor="DarkGreen" TextColor="White" HorizontalOptions="EndAndExpand" Text="Enviar" Clicked="Enviar" FontSize="Micro" WidthRequest="70" HeightRequest="15"></Button>
-            </StackLayout>
-                <StackLayout IsVisible="False" HorizontalOptions="FillAndExpand" x:Name="StckSucesso" BackgroundColor="#a5d6a7">
-                <Label HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="TxtSucesso" Text=""></Label>
-            </StackLayout>
-            
-
-                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" IsVisible="False">
-                    <Button x:Name="BtnCopiar" BackgroundColor="Transparent" Text="Me Copiar" Image="box.png"></Button>
-                    <Button x:Name="BtnSms" BackgroundColor="Transparent" Text="Enviar Sms" Image="box.png"></Button>
                 </StackLayout>
 
-            <!--<StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,15,0,0">
-                <Label Text="Avisos" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
+                <StackLayout IsVisible="False" HorizontalOptions="FillAndExpand" x:Name="StckSucesso" BackgroundColor="#a5d6a7">
+                    <Label HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="TxtSucesso" Text=""></Label>
+                </StackLayout>
+
             </StackLayout>
 
-            <StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,8,0,0">
-                <Label Text="Anotações" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
-            </StackLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" x:Name="Scroll2" VerticalOptions="FillAndExpand" IsVisible="True">
+                <StackLayout x:Name="StackList">
+                    <Label HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" x:Name="TxtAnot" Text=""></Label>
+                    <ContentView x:Name="contentView" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand" WidthRequest="400" HeightRequest="500">
+                        <xForms:SfDataGrid HeaderRowHeight="25" HeightRequest="380" x:Name="ListaAnot" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" AutoGenerateColumns="False" ColumnSizer="LastColumnFill" AutoGenerateColumnsMode="ResetAll">
+                            <xForms:SfDataGrid.Columns >
+                                <xForms:GridTextColumn  Width="110" MinimumWidth="100" HeaderText="Data" 
+                                   MappingName="Anot_DataAnot" />
+                                <xForms:GridTextColumn HeaderText="Descrição" HeaderTextAlignment="Start" TextAlignment="Start"
+                                   MappingName="Anot_histor" />
+                            </xForms:SfDataGrid.Columns>
+                        </xForms:SfDataGrid>
+                    </ContentView>
+                </StackLayout>
+            </ScrollView>
 
-            <StackLayout BackgroundColor="#1976D2" HorizontalOptions="FillAndExpand" Padding="5,10,5,10" Margin="0,8,0,0">
-                <Label Text="Arquivos" TextColor="White"  HorizontalOptions="CenterAndExpand" FontSize="20"></Label>
-            </StackLayout>-->
-                
-                
         </StackLayout>
 
 
-        </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
+
 </ContentPage>

@@ -29,6 +29,25 @@ namespace ControleApp.Webservice
             }
         }
 
+        public async static Task<string> IncluirAnotacao(Tarefas t)
+        {
+            try
+            {
+                //string cnpj, string cpf, DateTime? mes, DateTime? inicioPeriodo, DateTime? fimPeriodo, int convenioId, int //hospitalId, string paciente, int? situacaoId
+
+                string url = "http://vm01.bulgart.com:5000/Api/Tarefas";
+                var req = new Request(url);
+
+                return await req.Post<string>(t);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
         public async static Task<string> Update(Tarefas t)
         {
             try

@@ -72,14 +72,14 @@ namespace ControleApp.Views
                 Nome = $"Anotações ({t.AnotTotal})",
                 Image = "icone_anotacoes_verde.png"
             };
-            GrdFuturo.BindingContext = new Item() {Nome = $"Futuro ()", Image = "icone_anotacoes_verde.png"};
+            GrdFuturo.BindingContext = new Item() {Nome = $"Futuro ()", Image = "icone_futuro.png"};
 
             lista.Add(new Item() { Nome = $"Não Lidas ({t.NLTotal})", Image = "icone_naolidas.png" });
             lista.Add(new Item() { Nome = $"Atrasos ({t.AtrTotal})", Image = "icone_atrasos_vermelho.png" });
             lista.Add(new Item() { Nome = $"Fazer Hoje ({t.FhjTotal})", Image = "icone_fazerhoje_laranja.png" });
             lista.Add(new Item() { Nome = $"Validar ({t.VldTotal})", Image = "icone_validar_azul.png" });
             lista.Add(new Item() { Nome = $"Anotações ({t.AnotTotal})", Image = "icone_anotacoes_verde.png" });
-            lista.Add(new Item() { Nome = $"Futuro ()", Image = "icone_anotacoes_verde.png" });
+            lista.Add(new Item() { Nome = $"Futuro ()", Image = "icone_futuro.png" });
 
             lista2.Add(new Item() { Nome = $"Nova Tarefa", Image = "Icone_NovaTarefa.png" });
             lista2.Add(new Item() { Nome = $"Adicionar Arquivos", Image = "icone_arquivos_marron.png" });

@@ -36,6 +36,19 @@ namespace ControleApp.Business
             }
         }
 
+        public async static Task<string> IncluirAnotacao(Tarefas t)
+        {
+            try
+            {
+                return await TarefasWS.IncluirAnotacao(t);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async static Task<List<Tipo>> GetTipo()
         {
             try

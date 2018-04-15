@@ -7,7 +7,9 @@ using ControleApp.Business;
 using ControleApp.Model;
 using ControleApp.Util;
 using Xamarin.Forms;
+using Newtonsoft.Json;
 using Xamarin.Forms.Xaml;
+using Syncfusion.SfDataGrid.XForms;
 
 namespace ControleApp.Views
 {
@@ -15,6 +17,8 @@ namespace ControleApp.Views
     public partial class NovaTarefa : ContentPage
     {
         private Tarefas tarefa;
+        private List<TarefasAnot> minhasAnot = new List<TarefasAnot>();
+
         public NovaTarefa(Tarefas t = null)
         {
             InitializeComponent();
@@ -55,6 +59,31 @@ namespace ControleApp.Views
                 PckAcao.SelectedIndex = tarefa.Pgr_Fase;
                 //TxtTexto.IsVisible = false;
                 //ScrollEditor.ScrollToAsync(0, 0, false);
+                if (tarefa.tarefasAnot != null)
+                {
+                    var listavm = new List<ListaVM>();
+                    minhasAnot = tarefa.tarefasAnot;
+                    if (minhasAnot.Count > 0)
+                    {
+                        TxtTexto.Text += "\r\n\r\n Possui Anotações ";
+                        TxtAnot.Text = "Anotações";
+                        TxtAnot.IsVisible = true;
+                    }
+                    else
+                    {
+                        TxtAnot.IsVisible = false;
+                    }
+                    foreach (var l in minhasAnot)
+                    {
+                        var itemm = new ListaVM() { Anot_DataAnot = l.Anot_DataAnot.ToString("dd/MM/yyyy"), Anot_histor = l.Anot_histor };
+                        listavm.Add(itemm);
+                        //TxtTexto.Text += "\r\n\r\n " + l.Anot_DataAnot.ToString("dd/MM/yyyy") + " - " + l.Anot_histor;
+                    }
+
+                    ListaAnot.ItemsSource = listavm;
+
+                }
+
             }
         }
 
@@ -192,14 +221,6 @@ namespace ControleApp.Views
            
         }
 
-        //private void TxtCliente_OnUnfocused(object sender, FocusEventArgs e)
-        //{
-        //    if (TxtCliente.Text.Length == 0)
-        //    {
-        //        TxtCliente.Text = "0";
-        //    }
-        //}
-
         private void Eu_Clicked(object sender, EventArgs e)
         {
             PckPara.SelectedItem = usuarios.Where(s => s.Usw_cod == Session.Usuario.Usw_cod).FirstOrDefault();
@@ -244,6 +265,36 @@ namespace ControleApp.Views
         {
             PickerLabelAcao.Text = PckAcao.Items[PckAcao.SelectedIndex];
         }
+
+        public class ListaVM
+        {
+            public string Anot_DataAnot { get; set; }
+            public string Anot_histor { get; set; }
+
+        }
+
+        private void MostrarAnotacoes(object sender, EventArgs e)
+        {
+            //Filtros.IsVisible = !Filtros.IsVisible;
+            //var listavm = new List<ListaVM>();
+            //foreach (var l in minhasAnot)
+            //{
+            //    var itemm = new ListaVM() { Anot_DataAnot = l.Anot_DataAnot.ToString("dd/MM/yyyy"), Anot_histor = l.Anot_histor };
+            //    listavm.Add(itemm);
+            //}
+            //ListaAnot.ItemsSource = listavm;
+            //ListaAnot.IsVisible = true;
+
+        }
+        private void Lista_OnGridTapped(object sender, GridTappedEventsArgs e)
+        {
+            Session.Navigation.Navigation.PushAsync(new NovaTarefa((Tarefas)e.RowData));
+        }
+        private void BtnAnotar_OnClicked(object sender, EventArgs e)
+        {
+            Session.Navigation.Navigation.PushAsync(new Anotacao(tarefa));
+        }
+
 
 
 
